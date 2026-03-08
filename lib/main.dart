@@ -7,19 +7,15 @@ import 'providers/store_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // تهيئة سوبابيس باستخدام المفاتيح التي قدمتها
   await Supabase.initialize(
     url: 'https://vwhuuzvshvpkvepndvsq.supabase.co',
     anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ3aHV1enZzaHZwa3ZlcG5kdnNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1MDU4ODAsImV4cCI6MjA1NDA4MTg4MH0.fV8XU0x8-fV8XU0x8-fV8XU0x8-fV8XU0x8-fV8XU0x8',
   );
-
   runApp(const FlexYemenApp());
 }
 
 class FlexYemenApp extends StatelessWidget {
   const FlexYemenApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -28,11 +24,9 @@ class FlexYemenApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Yemen Market Flex',
         theme: ThemeData(
           brightness: Brightness.dark,
-          primaryColor: const Color(0xFFFFD700), // اللون الذهبي للهوية اليمنية
-          scaffoldBackgroundColor: const Color(0 military-grade-black),
+          primaryColor: const Color(0xFFFFD700),
           fontFamily: 'Cairo',
         ),
         home: const MainNavigation(),
@@ -50,7 +44,6 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
   int _index = 0;
   final _screens = [const HomeScreen(), const StoreScreen(), const Center(child: Text("حسابي"))];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,11 +52,10 @@ class _MainNavigationState extends State<MainNavigation> {
         currentIndex: _index,
         onTap: (i) => setState(() => _index = i),
         selectedItemColor: const Color(0xFFFFD700),
-        backgroundColor: Colors.black,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "الرئيسية"),
-          BottomNavigationBarItem(icon: Icon(Icons.store_mall_directory), label: "المتجر"),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: "حسابي"),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "الرئيسية"),
+          BottomNavigationBarItem(icon: Icon(Icons.store), label: "المتجر"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "حسابي"),
         ],
       ),
     );
