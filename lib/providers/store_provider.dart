@@ -10,6 +10,13 @@ class StoreProvider with ChangeNotifier {
   List<Product> get products => _products;
   bool get isLoading => _isLoading;
 
+  // الدالة التي سيتم استدعاؤها عند تشغيل التطبيق
+  Future<void> initConnection() async {
+    // الانتظار لمدة 10 ثوانٍ قبل بدء الاتصال
+    await Future.delayed(const Duration(seconds: 10));
+    await fetchProducts();
+  }
+
   Future<void> fetchProducts() async {
     _isLoading = true;
     notifyListeners();
@@ -18,7 +25,7 @@ class StoreProvider with ChangeNotifier {
       final data = await _supabase.from('products').select();
       _products = (data as List).map((json) => Product.fromJson(json)).toList();
     } catch (e) {
-      debugPrint("Error fetching products: $e");
+      debugPrint("خطأ في جلب البيانات: $e");
     } finally {
       _isLoading = false;
       notifyListeners();

@@ -24,7 +24,7 @@ class FlexYemenApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => StoreProvider()..fetchProducts()),
+        ChangeNotifierProvider(create: (_) => StoreProvider()..initConnection()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
