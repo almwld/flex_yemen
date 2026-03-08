@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:provider/provider.dart';
 import 'screens/home_screen.dart';
 import 'screens/store_screen.dart';
 import 'providers/store_provider.dart';
 
-void main() => runApp(const FlexYemenApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // استبدل هذه القيم ببيانات مشروعك من Supabase Dashboard
+  await Supabase.initialize(
+    url: 'https://YOUR_PROJECT_URL.supabase.co',
+    anonKey: 'YOUR_ANON_KEY',
+  );
+
+  runApp(const FlexYemenApp());
+}
 
 class FlexYemenApp extends StatelessWidget {
   const FlexYemenApp({super.key});
@@ -15,7 +26,7 @@ class FlexYemenApp extends StatelessWidget {
       providers: [ChangeNotifierProvider(create: (_) => StoreProvider())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(brightness: Brightness.dark, primaryColor: const Color(0xFFFFD700), fontFamily: 'Cairo'),
+        theme: ThemeData(brightness: Brightness.dark, primaryColor: const Color(0xFFFFD700)),
         home: const MainNavigation(),
       ),
     );
@@ -30,7 +41,7 @@ class MainNavigation extends StatefulWidget {
 
 class _MainNavigationState extends State<MainNavigation> {
   int _index = 0;
-  final _screens = [const HomeScreen(), const StoreScreen(), const Center(child: Text("الملف الشخصي"))];
+  final _screens = [const HomeScreen(), const StoreScreen(), const Center(child: Text("حسابي"))];
 
   @override
   Widget build(BuildContext context) {
