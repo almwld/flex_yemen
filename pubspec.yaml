@@ -1,12 +1,16 @@
 name: flex_yemen
-description: A new Flutter project.
-publish_to: 'none'
+description: A fresh start for Flex Yemen Ultimate.
 version: 1.0.0+1
+publish_to: 'none'
+
 environment:
   sdk: '>=3.0.0 <4.0.0'
+
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
+  provider: ^6.1.1
+  carousel_slider: ^5.0.0
+
 flutter:
   uses-material-design: true
